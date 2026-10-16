@@ -11,8 +11,6 @@ function createPromise() {
   });
 }
 
-const startTime = Date.now();
-
 const promises = [
   createPromise(),
   createPromise(),
@@ -20,8 +18,6 @@ const promises = [
 ];
 
 Promise.all(promises).then((results) => {
-  const totalTime = (Date.now() - startTime) / 1000;
-
   output.innerHTML = "";
 
   results.forEach((time, index) => {
@@ -34,6 +30,8 @@ Promise.all(promises).then((results) => {
 
     output.appendChild(row);
   });
+
+  const totalTime = Math.max(...results);
 
   const totalRow = document.createElement("tr");
 
